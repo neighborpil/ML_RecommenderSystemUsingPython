@@ -15,4 +15,5 @@ hands on codes of book named recommender system using python in Korean
 % conda install -y numpy pandas
 % conda install -y jupyter notebook
 % conda install -y scipy scikit-learn
+% conda install -y seaborn
 ```

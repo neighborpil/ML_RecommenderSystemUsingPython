@@ -1,5 +1,7 @@
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.utils import shuffle
@@ -169,10 +171,10 @@ class MF():
 # 최적의 K값 찾기
 results = []
 index = []
-for K in range(50, 261, 10):
+for K in range(50, 61, 10):
     print('K = ', K)
     R_temp = ratings.pivot(index='user_id', columns='movie_id', values='rating').fillna(0)
-    mf = MF(R_temp, K=K, alpha=0.001, beta=0.02, iterations=300, verbose=True)
+    mf = MF(R_temp, K=K, alpha=0.001, beta=0.02, iterations=20, verbose=True)
     test_set = mf.set_test(ratings_test)
     result = mf.test()
     index.append(K)

@@ -171,14 +171,14 @@ class MF():
 # 최적의 K값 찾기
 results = []
 index = []
-for K in range(50, 61, 10):
+for K in range(50, 261, 10):
     print('K = ', K)
     R_temp = ratings.pivot(index='user_id', columns='movie_id', values='rating').fillna(0)
-    mf = MF(R_temp, K=K, alpha=0.001, beta=0.02, iterations=20, verbose=True)
+    mf = MF(R_temp, K=K, alpha=0.001, beta=0.02, iterations=300, verbose=True)
     test_set = mf.set_test(ratings_test)
     result = mf.test()
     index.append(K)
-    result.append(result)
+    results.append(result)
 
 # 최적의 iteration값 찾기
 summery = []
@@ -192,7 +192,7 @@ for i in range(len(results)):
 
 # 그래프 그리기
 plt.plot(index, [x[2] for x in summery])  # x: K, y: RMSE
-plt.ylim(0.89, 0.94)
+plt.ylim(0.85, 0.98)
 plt.xlabel('K')
 plt.ylabel('RMSE')
 plt.show()

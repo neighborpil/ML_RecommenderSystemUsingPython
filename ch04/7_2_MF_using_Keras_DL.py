@@ -4,6 +4,7 @@ import tensorflow as tf
 from tensorflow.keras import layers
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, Embedding, Dot, Add, Flatten
+from tensorflow.keras.layers import Dense, Concatenate, Activation
 from tensorflow.keras.regularizers import l2
 from tensorflow.keras.optimizers import SGD, Adamax
 
@@ -46,9 +47,19 @@ Q_embedding = Embedding(N, K, embeddings_regularizer=l2())(item)  # (N, 1, K), s
 user_bias = Embedding(M, 1, embeddings_regularizer=l2())(user)  # (M, 1, ), shape: (None, 1, 1)
 item_bias = Embedding(N, 1, embeddings_regularizer=l2())(item)  # (N, 1, ), shape: (None, 1, 1)
 
-R = layers.dot([P_embedding, Q_embedding], axes=2)  # shape: TensorShape([None, 1, 1])
-R = layers.add([R, user_bias, item_bias])  # shape: TensorShape([None, 1, 1])
-R = Flatten()(R)  # shape: TensorShape([None, 1])
+# concatenate layers
+P_embedding = Flatten()(P_embedding)
+Q_embedding = Flatten()(Q_embedding)
+user_bias = Flatten()(user_bias)
+item_bias = Flatten()(item_bias)
+R = Concatenate()([P_embedding, Q_embedding, user_bias, item_bias])
+
+# Neural network
+R = Dense(2048)(R)
+R = Activation('relu')(R)
+R = Dense(256)(R)
+R = Activation('linear')(R)
+R = Dense(1)(R)
 
 # model setting
 model = Model(inputs=[user, item], outputs=R)
@@ -62,9 +73,9 @@ model.summary()
 # model fitting
 result = model.fit(
     x=[ratings_train.user_id.values, ratings_train.movie_id.values],
-    y=ratings_train.rating.values -mu,
-    epochs=60,
-    batch_size=256,
+    y=ratings_train.rating.values - mu,
+    epochs=65,
+    batch_size=512,
     validation_data=(
         [ratings_test.user_id.values, ratings_test.movie_id.values],
         ratings_test.rating.values - mu

@@ -3,8 +3,9 @@ hands on codes of book named recommender system using python in Korean
 
 ## Enviroment
  - create enviroment
+ - 2022.10.7. 현재 시점에 python 3.10은 scikit-surprise패키지가 사용 불가
 ```
-% conda create --name recommender python=3.10
+% conda create --name recommender python=3.8
 ```
  - ativate enviroment
 ```
@@ -16,4 +17,8 @@ hands on codes of book named recommender system using python in Korean
 % conda install -y jupyter notebook
 % conda install -y scipy scikit-learn
 % conda install -y seaborn matplotlib
+% conda install -c conda-forge scikit-surprise
+
+% conda install -c apple tensorflow-deps
+% python -m pip install tensorflow-macos
 ```

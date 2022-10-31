@@ -21,4 +21,7 @@ hands on codes of book named recommender system using python in Korean
 
 % conda install -c apple tensorflow-deps
 % python -m pip install tensorflow-macos
+
+% conda install selenium
+% conda install -c transformer
 ```

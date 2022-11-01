@@ -41,3 +41,8 @@ hands on codes of book named recommender system using python in Korean
 % conda install -y transformers
 % conda install -y pytorch
 ```
+
+## pytorch cuda 깔기(윈도우)
+```
+> conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
+```

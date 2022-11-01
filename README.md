@@ -29,6 +29,7 @@ hands on codes of book named recommender system using python in Korean
 
 ## 전이학습 환경설정
 ```
+% conda update -n base -c defaults conda
 % conda create --name transfer python=3.8
 % conda install -y numpy pandas jupyter notebook scipy scikit-learn seaborn matplotlib
 % conda install -c apple tensorflow-deps

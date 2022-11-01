@@ -39,7 +39,6 @@ hands on codes of book named recommender system using python in Korean
 > python -m pip install tensorflow
 % conda install -y tokenizers=0.12.1
 % conda install -y transformers
-% conda install -y pytorch
 ```
 
 ## pytorch cuda 깔기(윈도우)

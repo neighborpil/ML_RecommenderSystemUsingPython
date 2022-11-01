@@ -32,8 +32,11 @@ hands on codes of book named recommender system using python in Korean
 % conda update -n base -c defaults conda
 % conda create --name transfer python=3.8
 % conda install -y numpy pandas jupyter notebook scipy scikit-learn seaborn matplotlib
+# 맥용
 % conda install -c apple tensorflow-deps
 % python -m pip install tensorflow-macos
+# 윈도우즈용
+> python -m pip install tensorflow
 % conda install -y tokenizers=0.12.1
 % conda install -y transformers
 % conda install -y pytorch

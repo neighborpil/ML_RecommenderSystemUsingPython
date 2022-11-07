@@ -24,6 +24,7 @@ hands on codes of book named recommender system using python in Korean
 
 % conda install selenium
 % conda install -c transformer
+% conda install -y statsmodels
 ```
 
 
